@@ -1,4 +1,4 @@
-import { useFinance, Transaction } from "@/context/FinanceContext";
+import { useFinance, type Transaction } from "@/context/FinanceContext";
 import { useMemo, useState } from "react";
 import { Search, Filter, ArrowUpDown, Plus, Pencil, Trash2, Copy } from "lucide-react";
 import { Input } from "@/components/ui/input";
