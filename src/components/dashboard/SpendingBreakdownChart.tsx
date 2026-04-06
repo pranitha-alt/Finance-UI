@@ -37,7 +37,10 @@ const SpendingBreakdownChart = () => {
                   {data.map((_, i) => <Cell key={i} fill={PALETTE[i % PALETTE.length]} />)}
                 </Pie>
                 <Tooltip
-                  formatter={(v: number) => `${currency.symbol}${v.toLocaleString()}`}
+                  formatter={(value, name) => {
+                    const displayValue = Array.isArray(value) ? Number(value[0] ?? 0) : Number(value ?? 0);
+                    return [`${currency.symbol}${displayValue.toLocaleString()}`, name];
+                  }}
                   contentStyle={{ background: "hsl(0 0% 100%)", borderRadius: "12px", fontSize: 12, border: "1px solid hsl(220 13% 91%)", boxShadow: "0 8px 24px -4px hsl(220 30% 20% / 0.1)" }}
                 />
               </PieChart>
