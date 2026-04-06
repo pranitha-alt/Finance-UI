@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFinance, CURRENCIES, CurrencyInfo } from "@/context/FinanceContext";
+import { useFinance, CURRENCIES } from "@/context/FinanceContext";
+import type { CurrencyInfo } from "@/context/FinanceContext";
 import { Shield, Eye, TrendingUp, DollarSign, BarChart3, ArrowRight, Globe, ChevronDown, Sparkles, PieChart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
