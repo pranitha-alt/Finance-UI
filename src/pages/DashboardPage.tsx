@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useFinance, CURRENCIES, CurrencyInfo } from "@/context/FinanceContext";
+import { useFinance, CURRENCIES } from "@/context/FinanceContext";
+import type { CurrencyInfo } from "@/context/FinanceContext";
 import SummaryCards from "@/components/dashboard/SummaryCards";
 import BalanceTrendChart from "@/components/dashboard/BalanceTrendChart";
 import SpendingBreakdownChart from "@/components/dashboard/SpendingBreakdownChart";
 import TransactionList from "@/components/dashboard/TransactionList";
 import InsightsPanel from "@/components/dashboard/InsightsPanel";
 import { LogOut, Shield, Eye, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import finvistaLogo from "@/assets/finvista-logo.png";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -20,17 +21,6 @@ const DashboardPage = () => {
     setIsLoggedIn(false);
     setRole("viewer");
     navigate("/");
-  };
-
-  const handleRoleSwitch = (newRole: "admin" | "viewer") => {
-    if (newRole === "admin" && !isLoggedIn) {
-      navigate("/login");
-      return;
-    }
-    setRole(newRole);
-    if (newRole === "viewer") {
-      setIsLoggedIn(false);
-    }
   };
 
   const filteredCurrencies = CURRENCIES.filter(c =>
@@ -59,9 +49,7 @@ const DashboardPage = () => {
         <div className="max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-8 h-16">
           {/* Logo */}
           <div className="flex items-center gap-2.5 cursor-pointer group" onClick={() => navigate("/")}>
-            <div className="w-9 h-9 rounded-xl bg-teal-600 text-white font-semibold flex items-center justify-center shadow-sm">
-              FV
-            </div>
+            <img src={finvistaLogo} alt="FinVista" className="w-9 h-9 rounded-xl" width={36} height={36} />
             <span className="text-lg font-heading font-bold text-slate-800 group-hover:text-teal-600 transition-colors">FinVista</span>
           </div>
 
