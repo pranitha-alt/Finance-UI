@@ -44,7 +44,10 @@ const BalanceTrendChart = () => {
             <YAxis tick={{ fontSize: 11, fill: "hsl(220 9% 46%)" }} stroke="hsl(220 13% 91%)" tickFormatter={v => `${currency.symbol}${(v / 1000).toFixed(0)}k`} />
             <Tooltip
               contentStyle={{ background: "hsl(0 0% 100%)", border: "1px solid hsl(220 13% 91%)", borderRadius: "12px", fontSize: 13, boxShadow: "0 8px 24px -4px hsl(220 30% 20% / 0.1)" }}
-              formatter={(val: number) => [`${currency.symbol}${val.toLocaleString()}`, undefined]}
+              formatter={(value, name) => {
+                const amount = Array.isArray(value) ? Number(value[0] ?? 0) : Number(value ?? 0);
+                return [`${currency.symbol}${amount.toLocaleString()}`, name];
+              }}
             />
             <Area type="monotone" dataKey="income" stroke="hsl(152, 69%, 41%)" fill="url(#incGrad)" strokeWidth={2.5} name="Income" dot={{ r: 4, fill: "hsl(152, 69%, 41%)", strokeWidth: 2, stroke: "hsl(0 0% 100%)" }} />
             <Area type="monotone" dataKey="expense" stroke="hsl(16, 85%, 61%)" fill="url(#expGrad)" strokeWidth={2.5} name="Expenses" />
